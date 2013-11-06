@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>BeefSite2</title>
+<script language="javascript" src="./flashJs/FLRelease1.js"> </script>
+<script language="javascript" src="./flashJs/FLRelease2.js"> </script>
+</head>
+<body bgcolor="#cccccc">
+<!--url's used in the movie-->
+<!--text used in the movie-->
+<!-- saved from url=(0013)about:internet -->
+<noScript>
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="900" height="590" id="BeefSite2" align="middle" processed="true"><param name="allowScriptAccess" value="sameDomain" /><param name="movie" value="BeefSite2.swf" /><param name="quality" value="high" /><param name="wmode" value="transparent" /><param name="bgcolor" value="#cccccc" /><embed src="BeefSite2.swf" quality="high" wmode="transparent" bgcolor="#CCCCCC" width="900" height="590" name="BeefSite2" align="middle" allowscriptaccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></object>
+</noScript>
+<script>
+//<!--
+AC_RunFlContentX ("src","BeefSite2.swf","quality","high","wmode","transparent","bgcolor","#CCCCCC","width","900","height","590","name","BeefSite2","align","middle","allowscriptaccess","sameDomain");
+//-->
+</script>
+</body>
+</html>
