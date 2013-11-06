@@ -1,0 +1,66 @@
+stop();
+
+moog.tabIndex = 1;
+focusManager.setFocus(moog);
+
+globalNum = new Number();
+globalNum = 0;
+
+slider1.musakVolumeSliderMC.onPress = function() {startDrag(this,true,0,-114,0,0);}
+slider1.musakVolumeSliderMC.onRelease = function() {stopDrag();}
+slider1.musakVolumeSliderMC.onReleaseOutside = function() {stopDrag();}
+
+slider2.musakVolumeSliderMC.onPress = function() {startDrag(this,true,0,-114,0,0);}
+slider2.musakVolumeSliderMC.onRelease = function() {stopDrag();}
+slider2.musakVolumeSliderMC.onReleaseOutside = function() {stopDrag();}
+
+slider3.musakVolumeSliderMC.onPress = function() {startDrag(this,true,0,-114,0,0);}
+slider3.musakVolumeSliderMC.onRelease = function() {stopDrag();}
+slider3.musakVolumeSliderMC.onReleaseOutside = function() {stopDrag();}
+
+slider4.musakVolumeSliderMC.onPress = function() {startDrag(this,true,0,-114,0,0);}
+slider4.musakVolumeSliderMC.onRelease = function() {stopDrag();}
+slider4.musakVolumeSliderMC.onReleaseOutside = function() {stopDrag();}
+
+slider5.musakVolumeSliderMC.onPress = function() {startDrag(this,true,0,-114,0,0);}
+slider5.musakVolumeSliderMC.onRelease = function() {stopDrag();}
+slider5.musakVolumeSliderMC.onReleaseOutside = function() {stopDrag();}
+
+slider6.musakVolumeSliderMC.onPress = function() {startDrag(this,true,0,-114,0,0);}
+slider6.musakVolumeSliderMC.onRelease = function() {stopDrag();}
+slider6.musakVolumeSliderMC.onReleaseOutside = function() {stopDrag();}
+
+
+setInterval(randomFunc, 30000);
+
+function randomFunc(){
+	yDest1 = -(random(114));
+	yDest2 = -(random(114));
+	yDest3 = -(random(114));
+	yDest4 = -(random(114));
+	yDest5 = -(random(114));
+	yDest6 = -(random(114));
+	rotDest1 = Math.round(Math.random()*(-145-145))+145;
+	rotDest2 = Math.round(Math.random()*(-145-145))+145;
+	rotDest3 = Math.round(Math.random()*(-145-145))+145;
+	onEnterFrame = function(){
+		if (slider6.musakVolumeSliderMC._y != yDest6 
+			|| slider5.musakVolumeSliderMC._y != yDest5 
+			|| slider4.musakVolumeSliderMC._y != yDest4
+			|| slider3.musakVolumeSliderMC._y != yDest3
+			|| slider2.musakVolumeSliderMC._y != yDest2
+			|| slider1.musakVolumeSliderMC._y != yDest1) {
+			slider1.musakVolumeSliderMC._y += (yDest1-slider1.musakVolumeSliderMC._y)*.03;
+			slider2.musakVolumeSliderMC._y += (yDest2-slider2.musakVolumeSliderMC._y)*.03;
+			slider3.musakVolumeSliderMC._y += (yDest3-slider3.musakVolumeSliderMC._y)*.03;
+			slider4.musakVolumeSliderMC._y += (yDest4-slider4.musakVolumeSliderMC._y)*.03;
+			slider5.musakVolumeSliderMC._y += (yDest5-slider5.musakVolumeSliderMC._y)*.03;
+			slider6.musakVolumeSliderMC._y += (yDest6-slider6.musakVolumeSliderMC._y)*.03;
+		}
+		if(dial1.BigDial.dialTop._rotation != rotDest1){
+			dial1.BigDial.dialTop._rotation += (rotDest1-dial1.BigDial.dialTop._rotation)*.02;
+			dial2.BigDial.dialTop._rotation += (rotDest2-dial2.BigDial.dialTop._rotation)*.02;
+			dial3.BigDial.dialTop._rotation += (rotDest3-dial3.BigDial.dialTop._rotation)*.02;
+		}
+	}
+}
