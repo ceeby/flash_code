@@ -1,0 +1,315 @@
+musicPause.enabled = false;
+musicPlay.enabled = true;
+var state1 = new Boolean();
+var firstime = new Boolean();
+var musicPlaying = new Boolean();
+var hitPlay = new Boolean();
+state1 = false;
+musicPlaying = false;
+hitPlay = false;
+firstime = true;
+var musakVolume2 = new Number();
+musakVolume2 = 0;
+/************************************BUTTON FUNCTIONS***********************************/
+this.musicPlay.onRollOver = function() {
+	if (!musicPlaying) {
+		musicPlay.gotoAndStop(2);
+	} else if (hitPlay) {
+		musicPlay.gotoAndStop(2);
+	} else {
+		musicPlay.gotoAndStop(2);
+	}
+};
+this.musicPlay.onRollOut = function() {
+	if (!musicPlaying) {
+		musicPlay.gotoAndStop(1);
+	} else if (hitPlay) {
+		musicPlay.gotoAndStop(2);
+	} else {
+		musicPlay.gotoAndStop(2);
+	}
+};
+this.musicPlay.onRelease = function() {
+	if (firstime) {
+			firstime = false;
+		} else {
+			_parent.globalNum = 1;
+		}
+	musicPause.enabled = true;
+	musicPause.gotoAndStop(1);
+	hitPlay = true;
+	playMusak();
+	if (musicPlay.enabled) {
+		musicPlay.gotoAndStop(2);
+		//musicPause.gotoAndStop(1);
+		musicPlay.enabled = false;
+	}
+	if (state1) {
+		musicPlay.enabled = true;
+		musicPause.gotoAndStop(1);
+		musicPause.enabled = false;
+	} else {
+		musicPause.enabled = true;
+		musicPause.gotoAndStop(1);
+		state1 = false;
+	}
+};
+/****************************************END BUTTON FUNCTIONS*******************************/
+/*********************************************MUSIC PLAYER FUNCTIONS************************************/
+//----------------<sound initialization>-------------------\\
+var curTrackNum:Number = 90;
+var bgMusak:Sound;
+var pausePosition = new Number();
+var fastForwardHold = new Number();
+var pausePressed = new Boolean();
+var nextBtnPressed = new Boolean();
+pausePressed = true;
+nextBtnPressed = false;
+musicPause.enabled = false;
+// autosize some text fields
+//this.trackInfo.autoSize = "left";
+this.streamedBar._visible = false;
+this.playedBar._visible = false;
+// load the track info vars
+var myMusicLv:LoadVars = new LoadVars();
+myMusicLv.load("vars/track_info.txt");
+musicPrev.tabEnabled = false;
+musicNext.tabEnabled = false;
+musicPause.tabEnabled = false;
+musicPlay.tabEnabled = false;
+//---------------------sound setup--------------------------------//
+this.musicPause.onRelease = function() {
+	hitPlay = false;
+	musicPlaying = false;
+	musicPause.gotoAndStop(2);
+	musicPause.enabled = false;
+	musicPlay.enabled = true;
+	musicPlay.gotoAndStop(1);
+	state1 = false;
+	if (pausePressed) {
+		pausePosition = bgMusak.position/1000;
+		fastForwardBtn.enabled = false;
+		rewindBtn.enabled = false;
+		buttonInfo.text = "";
+		bgMusak.stop();
+		pausePressed = false;
+	}
+	// end if      
+};
+// end function
+function stopMusak() {
+	bgMusak.stop();
+	delete bgMusak;
+}
+// end function
+function playMusak() {
+	if (pausePressed || (!pausePressed && !musicPause.enabled && nextBtnPressed)) {
+		if (firstime) {
+			firstime = false;
+		} else {
+			_parent.globalNum = 1;
+		}
+		
+		_root.randomFunc();
+		
+		//trace(_root.globalNum);
+		//trace(firstime);
+		musicPlaying = true;
+		picLoadAnim.gotoAndPlay(39);
+		trace(picLoadAnim);
+		nextBtnPressed = false;
+		musicPause.enabled = true;
+		streamedBar._visible = true;
+		playedBar._visible = true;
+		playedBar._xscale = 0;
+		streamedBar._xscale = 0;
+		bgMusak = new Sound();
+		bgMusak.onSoundComplete = function() {
+			if (curTrackNum == (myMusicLv.totalTracks-1)+90) {
+				curTrackNum = 90;
+			} else {
+				curTrackNum++;
+			}
+			playMusak();
+		};
+		// end function
+		bgMusak.onID3 = function() {
+			textScroll.scrollee.SetText(bgMusak.id3.TIT2+"                              ", true);
+		};
+		// end function
+		bgMusak.onLoad = function(success) {
+			if (!success) {
+				trackInfo.text = "Failed to load track.";
+			}
+		};
+		bgMusak.loadSound("mp3s/mp3-"+curTrackNum+".mp3", true);
+		onEnterFrame = function () {
+			var trackDlProg:Number = bgMusak.getBytesLoaded()/1000;
+			var trackDlTotal:Number = bgMusak.getBytesTotal()/1000;
+			var trackDlPercent:Number = (trackDlProg/trackDlTotal)*100;
+			var trackDlDuration:Number = (bgMusak.duration/trackDlPercent)*100;
+			streamedBar._xscale = (trackDlProg/trackDlTotal)*100;
+			//trackDlPercent;
+			playedBar._xscale = (bgMusak.position/trackDlDuration)*100;
+		};
+		// end function
+		playedBar.onEnterFrame = function() {
+			bgMusak.setVolume(musakVolume/2);
+			musakVolume = -(musakVolumeMC.musakVolumeSliderMC._x*2);
+			musakVolume2 = -(musakVolumeMC.musakVolumeSliderMC._x*2);
+			// put Kilobytes loaded and total and put them into variables
+			var trackDlProg:Number = _root.bgMusak.getBytesLoaded()/1000;
+			var trackDlTotal:Number = _root.bgMusak.getBytesTotal()/1000;
+			var trackDlPercent:Number = Math.round((trackDlProg/trackDlTotal)*100);
+			var trackDlDuration:Number = Math.round((bgMusak.duration/trackDlPercent)*100);
+			musakProgBar.progMaskContainer.progMask._width = trackDlPercent+9;
+			musakProgBar.musakProg._x = Math.round((_root.bgMusak.position/trackDlDuration)*100);
+		};
+		//end function
+	} else {
+		if (firstime) {
+			firstime = false;
+		} else {
+			_parent.globalNum = 1;
+		}
+		fastForwardBtn.enabled = true;
+		rewindBtn.enabled = true;
+		pausePressed = true;
+		musicPause.enabled = true;
+		bgMusak.start(pausePosition);
+		_root.musicPause.gotoAndStop(1);
+	}
+	// end if 
+	// end else
+	_root.musicPause.gotoAndStop(1);
+}
+// end playMusak
+//--------------------/sound setup--------------------------------//
+//----------------<next track>-------------------\\
+this.musicNext.onRelease = function() {
+	musicNext.gotoAndStop(2);
+};
+this.musicNext.onRollOver = function() {
+	musicNext.gotoAndStop(2);
+};
+this.musicNext.onRollOut = function() {
+	musicNext.gotoAndStop(1);
+};
+this.musicNext.onPress = function() {
+	musicNext.gotoAndStop(1);
+	if (!musicPause.enabled) {
+		musicPlay.gotoAndStop(2);
+		if (state1) {
+			musicPlay.enabled = true;
+			musicPause.enabled = false;
+		} else {
+			musicPause.enabled = true;
+			state1 = false;
+		}
+	}
+	//////////////////////////////////////////////      
+	trackInfo.text = "";
+	if (curTrackNum == (myMusicLv.totalTracks-1)+90) {
+		curTrackNum = 90;
+	} else {
+		curTrackNum++;
+	}
+	nextBtnPressed = true;
+	pausePressed = true;
+	musicPause.enabled = true;
+	musicPause.gotoAndStop(1);
+	stopMusak();
+	playMusak();
+};
+////////////////end musicNext Function
+//----------------</next track>-------------------\\
+//----------------<previous track>-------------------\\
+this.musicPrev.onRelease = function() {
+	musicPrev.gotoAndStop(2);
+};
+this.musicPrev.onRollOver = function() {
+	musicPrev.gotoAndStop(2);
+};
+this.musicPrev.onRollOut = function() {
+	musicPrev.gotoAndStop(1);
+};
+this.musicPrev.onPress = function() {
+	musicPrev.gotoAndPlay(2);
+	if (!musicPause.enabled) {
+		musicPlay.gotoAndStop(2);
+		musicPlay.enabled = false;
+		if (state1) {
+			musicPlay.enabled = true;
+			musicPause.enabled = false;
+		} else {
+			musicPause.enabled = true;
+			state1 = false;
+		}
+	}
+	///////////////////////      
+	trackInfo.text = "";
+	if (curTrackNum == 90) {
+		curTrackNum = (myMusicLv.totalTracks-1)+90;
+	} else {
+		curTrackNum--;
+	}
+	nextBtnPressed = true;
+	pausePressed = true;
+	musicPause.enabled = true;
+	musicPause.gotoAndStop(1);
+	stopMusak();
+	playMusak();
+};
+///////end musicPrev Function
+//----------------</previous track>-------------------\\
+//----------------pause Button----------------------\\
+this.musicPause.onRollOver = function() {
+	musicPause.gotoAndStop(2);
+};
+this.musicPause.onRollOut = function() {
+	musicPause.gotoAndStop(1);
+};
+//----------------/pause Button----------------------\\
+//----------------</sound initialization>-------------------\\
+//----------------<volume control>-------------------\\
+// initialize some volume control settings
+var musakVolume:Number = 140;
+this.musakVolumeMC._visible = true;
+// Set Volume to start at what musakVolume is at
+this.musakVolumeMC.musakVolumeSliderMC._x = musakVolume/2;
+// set what should happen when the volume slider is pressed, released, or released outside
+this.musakVolumeMC.musakVolumeSliderMC.onPress = function() {
+	startDrag(this, true, 0, 0, 120, 0);
+};
+this.musakVolumeMC.musakVolumeSliderMC.onRelease = function() {
+	stopDrag();
+};
+this.musakVolumeMC.musakVolumeSliderMC.onReleaseOutside = function() {
+	stopDrag();
+};
+//----------------</volume control>-------------------\\
+init();
+function init() {
+	musicPause.enabled = true;
+	musicPause.gotoAndStop(1);
+	hitPlay = true;
+	pausePressed = true;
+	_level0.mPlayer.mainPicLoad.loadPic("soon.swf");
+	_root.mPlayer.picLoadAnim.gotoAndPlay(39);
+	trace(picLoadAnim);
+	playMusak();
+	if (musicPlay.enabled) {
+		musicPlay.gotoAndStop(2);
+		musicPlay.enabled = false;
+	}
+	if (state1) {
+		musicPlay.enabled = true;
+		musicPause.gotoAndStop(1);
+		musicPause.enabled = false;
+	} else {
+		musicPause.enabled = true;
+		musicPause.gotoAndStop(1);
+		state1 = false;
+	}
+}
+picLoadAnim.gotoAndPlay(39);
