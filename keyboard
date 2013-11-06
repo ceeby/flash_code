@@ -1,0 +1,127 @@
+aBtn.onRelease = function (){
+	if(aBtn.at1) aBtn.gotoAndStop(2);
+	else {aBtn.gotoAndStop(1)};}
+bBtn.onRelease = function (){
+	if(bBtn.at1) bBtn.gotoAndStop(2);
+	else {bBtn.gotoAndStop(1)};}
+cBtn.onRelease = function (){
+	if(cBtn.at1) cBtn.gotoAndStop(2);
+	else {cBtn.gotoAndStop(1)};}
+dBtn.onRelease = function (){
+	if(dBtn.at1) dBtn.gotoAndStop(2);
+	else {dBtn.gotoAndStop(1)};}
+eBtn.onRelease = function (){
+	if(eBtn.at1) eBtn.gotoAndStop(2);
+	else {eBtn.gotoAndStop(1)};}
+fBtn.onRelease = function (){
+	if(fBtn.at1) fBtn.gotoAndStop(2);
+	else {fBtn.gotoAndStop(1)};}
+
+//*********************************KEYBOARD**********************************************/
+
+w1._visible = false;
+w2._visible = false;
+w3._visible = false;
+w4._visible = false;
+w5._visible = false;
+w6._visible = false;
+w7._visible = false;
+w8._visible = false;
+b1._visible = false;
+b2._visible = false;
+b3._visible = false;
+b4._visible = false;
+b5._visible = false;
+bShad1._visible = true;
+bShad2._visible = true;
+bShad3._visible = true;
+bShad4._visible = true;
+bShad5._visible = true;
+
+
+var key1SND = new Sound();
+
+key1.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A01.mp3", true);
+w1._visible = true;}
+key1.onReleaseOutside = function(){w1._visible = false;}
+key1.onRelease = function(){w1._visible = false;}
+
+key2.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A02.mp3", true);
+b1._visible = true; bShad1._visible = false;}
+key2.onReleaseOutside = function(){b1._visible = false;bShad1._visible = true;}
+key2.onRelease = function(){b1._visible = false;bShad1._visible = true;}
+
+
+key3.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A03.mp3", true);
+w2._visible = true;}
+key3.onReleaseOutside = function(){w2._visible = false;}
+key3.onRelease = function(){w2._visible = false;}
+
+key4.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A04.mp3", true);
+b2._visible = true; bShad2._visible = false;}
+key4.onReleaseOutside = function(){b2._visible = false;bShad2._visible = true;}
+key4.onRelease = function(){b2._visible = false;bShad2._visible = true;}
+
+key5.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A05.mp3", true);
+w3._visible = true;}
+key5.onReleaseOutside = function(){w3._visible = false;}
+key5.onRelease = function(){w3._visible = false;}
+
+key6.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A06.mp3", true);
+w4._visible = true;}
+key6.onReleaseOutside = function(){w4._visible = false;}
+key6.onRelease = function(){w4._visible = false;}
+
+key7.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A07.mp3", true);
+b3._visible = true; bShad3._visible = false;}
+key7.onReleaseOutside = function(){b3._visible = false;bShad3._visible = true;}
+key7.onRelease = function(){b3._visible = false;bShad3._visible = true;}
+
+key8.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A08.mp3", true);
+w5._visible = true;}
+key8.onReleaseOutside = function(){w5._visible = false;}
+key8.onRelease = function(){w5._visible = false;}
+
+key9.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A09.mp3", true);
+b4._visible = true; bShad4._visible = false;}
+key9.onReleaseOutside = function(){b4._visible = false;bShad4._visible = true;}
+key9.onRelease = function(){b4._visible = false;bShad4._visible = true;}
+
+key10.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A10.mp3", true);
+w6._visible = true;}
+key10.onReleaseOutside = function(){w6._visible = false;}
+key10.onRelease = function(){w6._visible = false;}
+
+key11.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A11.mp3", true);
+b5._visible = true; bShad5._visible = false;}
+key11.onReleaseOutside = function(){b5._visible = false;bShad5._visible = true;}
+key11.onRelease = function(){b5._visible = false;bShad5._visible = true;}
+
+key12.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A12.mp3", true);
+w7._visible = true;}
+key12.onReleaseOutside = function(){w7._visible = false;}
+key12.onRelease = function(){w7._visible = false;}
+
+key13.onPress = function(){//key1SND.loadSound("Keyboard sounds/A/A13.mp3", true);
+w8._visible = true;}
+key13.onReleaseOutside = function(){w8._visible = false;}
+key13.onRelease = function(){w8._visible = false;}
+
+onEnterFrame = function (){
+/*if (Key.isDown(81)) key1SND.loadSound("Keyboard sounds/A/A01.mp3", true); 
+if (Key.isDown(87)) key1SND.loadSound("Keyboard sounds/A/A02.mp3", true);
+if (Key.isDown(69)) key1SND.loadSound("Keyboard sounds/A/A03.mp3", true);
+if (Key.isDown(82)) key1SND.loadSound("Keyboard sounds/A/A04.mp3", true);
+if (Key.isDown(84)) key1SND.loadSound("Keyboard sounds/A/A05.mp3", true);
+if (Key.isDown(89)) key1SND.loadSound("Keyboard sounds/A/A06.mp3", true);
+if (Key.isDown(85)) key1SND.loadSound("Keyboard sounds/A/A07.mp3", true);
+if (Key.isDown(73)) key1SND.loadSound("Keyboard sounds/A/A08.mp3", true);
+if (Key.isDown(79)) key1SND.loadSound("Keyboard sounds/A/A09.mp3", true);
+if (Key.isDown(80)) key1SND.loadSound("Keyboard sounds/A/A10.mp3", true);
+if (Key.isDown(219)) key1SND.loadSound("Keyboard sounds/A/A11.mp3", true);
+if (Key.isDown(221)) key1SND.loadSound("Keyboard sounds/A/A12.mp3", true);
+if (Key.isDown(220)) key1SND.loadSound("Keyboard sounds/A/A13.mp3", true);
+*/
+}
+
+//*********************************END KEYBOARD******************************************/
