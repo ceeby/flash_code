@@ -1,0 +1,248 @@
+var switchNum = new Number();
+var loadNum = new Number();
+var firstTime = new Number();
+firstTime = 0;
+loadNum = 5;
+switchNum = 0;
+bLogo.enabled = false;
+// Home page is up when user goes to site for the first time
+//loadBar._visible = false;
+// Initial load of default page
+
+onEnterFrame = function () {
+	if (firstTime == 0) {
+		doors.gotoAndPlay(20);
+		firstTime = 1;
+		setSwitches();
+		emailList.gotoAndPlay(2);
+		emailList.enabled = false;
+		switchNum = 5;
+		loadNum = 5;
+		navTxt.gotoAndPlay(41);
+		delete onEnterFrame;
+	}
+};
+//---------------ROLL OVER AND OUT STUFF------------------------
+this.bio.onRollOver = function() {
+	navTxt.gotoAndPlay(2);
+};
+this.bio.onRollOut = function() {
+	outLogic();
+};
+this.workinProgress.onRollOver = function() {
+	navTxt.gotoAndPlay(11);
+};
+this.workinProgress.onRollOut = function() {
+	outLogic();
+};
+this.downLoads.onRollOver = function() {
+	navTxt.gotoAndPlay(21);
+};
+this.downLoads.onRollOut = function() {
+	outLogic();
+};
+this.contact.onRollOver = function() {
+	navTxt.gotoAndPlay(31);
+};
+this.contact.onRollOut = function() {
+	outLogic();
+};
+this.emailList.onRollOver = function() {
+	navTxt.gotoAndPlay(41);
+};
+this.emailList.onRollOut = function() {
+	outLogic();
+};
+this.fantabFam.onRollOver = function() {
+	navTxt.gotoAndPlay(51);
+};
+this.fantabFam.onRollOut = function() {
+	outLogic();
+};
+this.guestBook.onRollOver = function() {
+	navTxt.gotoAndPlay(61);
+};
+this.guestBook.onRollOut = function() {
+	outLogic();
+};
+this.studio.onRollOver = function() {
+	navTxt.gotoAndPlay(71);
+};
+this.studio.onRollOut = function() {
+	outLogic();
+};
+this.bLogo.onRollOver = function() {
+	navTxt.gotoAndPlay(81);
+};
+this.bLogo.onRollOut = function() {
+	outLogic();
+};
+//---------------END ROLL OVER AND OUT STUFF------------------------
+//---------------RELEASE STUFF------------------------
+this.bLogo.onRelease = function() {
+	setSwitches();
+	bLogo.enabled = false;
+	switchNum = 0;
+	navTxt.gotoAndStop(81);
+	loadNum = 0;
+	doors.play();
+};
+this.bio.onRelease = function() {
+	setSwitches();
+	bio.gotoAndPlay(2);
+	bio.enabled = false;
+	switchNum = 1;
+	loadNum = 1;
+	doors.play();
+};
+this.workinProgress.onRelease = function() {
+	/*
+	setSwitches();
+	workinProgress.gotoAndPlay(2);
+	workinProgress.enabled = false;
+	switchNum = 2;
+	loadNum = 2;
+	doors.play();
+	*/
+};
+this.downLoads.onRelease = function() {
+	setSwitches();
+	downLoads.gotoAndPlay(2);
+	downLoads.enabled = false;
+	switchNum = 3;
+	loadNum = 3;
+	doors.play();
+};
+this.contact.onRelease = function() {
+	setSwitches();
+	contact.gotoAndPlay(2);
+	contact.enabled = false;
+	switchNum = 4;
+	loadNum = 4;
+	doors.play();
+};
+this.emailList.onRelease = function() {
+	setSwitches();
+	emailList.gotoAndPlay(2);
+	emailList.enabled = false;
+	switchNum = 5;
+	loadNum = 5;
+	doors.play();
+};
+this.fantabFam.onRelease = function() {
+	setSwitches();
+	fantabFam.gotoAndPlay(2);
+	fantabFam.enabled = false;
+	switchNum = 6;
+	loadNum = 6;
+	doors.play();
+};
+this.guestBook.onRelease = function() {
+	/*
+	setSwitches();
+	guestBook.gotoAndPlay(2);
+	guestBook.enabled = false;
+	switchNum = 7;
+	loadNum = 7;
+	doors.play();
+	*/
+};
+this.studio.onRelease = function() {
+	setSwitches();
+	studio.gotoAndPlay(2);
+	studio.enabled = false;
+	switchNum = 8;
+	loadNum = 8;
+	doors.play();
+};
+//---------------END RELEASE STUFF------------------------
+setSwitches = function () {
+	_root.globalNum = 1;
+	if (switchNum == 1) {
+		bio.gotoAndPlay(8);
+		bio.enabled = true;
+	} else if (switchNum == 2) {
+		workinProgress.gotoAndPlay(8);
+		workinProgress.enabled = true;
+	} else if (switchNum == 3) {
+		downLoads.gotoAndPlay(8);
+		downLoads.enabled = true;
+	} else if (switchNum == 4) {
+		contact.gotoAndPlay(8);
+		contact.enabled = true;
+	} else if (switchNum == 5) {
+		emailList.gotoAndPlay(8);
+		emailList.enabled = true;
+	} else if (switchNum == 6) {
+		fantabFam.gotoAndPlay(8);
+		fantabFam.enabled = true;
+	} else if (switchNum == 7) {
+		guestBook.gotoAndPlay(8);
+		guestBook.enabled = true;
+	} else if (switchNum == 8) {
+		studio.gotoAndPlay(8);
+		studio.enabled = true;
+	} else if (switchNum == 0) {
+		bLogo.enabled = true;
+	}
+};
+outLogic = function () {
+	if (switchNum == 0) {
+		navTxt.gotoAndStop(91);
+	} else if (switchNum == 1) {
+		navTxt.gotoAndStop(10);
+	} else if (switchNum == 2) {
+		navTxt.gotoAndStop(20);
+	} else if (switchNum == 3) {
+		navTxt.gotoAndStop(30);
+	} else if (switchNum == 4) {
+		navTxt.gotoAndStop(40);
+	} else if (switchNum == 5) {
+		navTxt.gotoAndStop(50);
+	} else if (switchNum == 6) {
+		navTxt.gotoAndStop(60);
+	} else if (switchNum == 7) {
+		navTxt.gotoAndStop(70);
+	} else if (switchNum == 8) {
+		navTxt.gotoAndStop(80);
+	}
+};
+//----------------------LOAD MOVIE STUFF--------------//
+function loadSwf(path) {
+	emptyLoad.unloadMovie();
+	emptyLoad.loadMovie(path);
+	onEnterFrame = function () {
+		var total = emptyLoad.getBytesTotal();
+		var loaded = emptyLoad.getBytesLoaded();
+		var current = loaded/total*100;
+		if (current>10 && current<12) {
+			loadBar.gotoAndPlay(11);
+		} else if (current>20 && current<22) {
+			loadBar.gotoAndPlay(21);
+		} else if (current>30 && current<32) {
+			loadBar.gotoAndPlay(31);
+		} else if (current>40 && current<42) {
+			loadBar.gotoAndPlay(41);
+		} else if (current>50 && current<52) {
+			loadBar.gotoAndPlay(51);
+		} else if (current>60 && current<62) {
+			loadBar.gotoAndPlay(61);
+		} else if (current>70 && current<72) {
+			loadBar.gotoAndPlay(71);
+		} else if (current>80 && current<82) {
+			loadBar.gotoAndPlay(81);
+		} else if (current>90 && current<92) {
+			loadBar.gotoAndPlay(91);
+		} else if (current>98 && current<99) {
+			loadBar.gotoAndPlay(111);
+		} else if (current == 100) {
+			delete onEnterFrame;
+			loadBar.gotoAndPlay(120);
+			doors.enabled = true;
+			doors.gotoAndPlay(21);
+		}
+		// end if 
+	};
+	// end enterFrame
+}
+// end function
